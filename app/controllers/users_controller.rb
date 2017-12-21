@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     counts(@user)
   end
 
+
   private
   
   #Strong Parameter

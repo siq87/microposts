@@ -14,5 +14,14 @@ Rails.application.routes.draw do
   end
 
   resources :microposts, only: [:create, :destroy]
+  
+#いいね周りのルーティング
+  resources :likes, only: [:create, :destroy] do
+   member do
+     get :like_users
+     get :like_microposts
+   end
+  end
+  
   resources :relationships, only: [:create, :destroy]
 end

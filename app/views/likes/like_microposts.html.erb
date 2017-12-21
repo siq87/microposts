@@ -1,0 +1,29 @@
+<h1>お気に入りの投稿</h1>
+<div class="row">
+  <div class="col-xs-8">
+    <% @like_microposts.each do |favorite| %>
+      <% user = favorite.user %>
+      <li class="media">
+        <div class="media-left">
+          <img class="media-object img-rounded" src="<%= gravatar_url(user, options = { size: 50 }) %>" alt="">
+        </div>
+        <div class="media-body">
+          <div>
+            <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= favorite.created_at %></span>
+          </div>
+          <div>
+            <p><%= favorite.content %></p>
+          </div>
+          <div>
+            <% if current_user == favorite.user %>
+              <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <% end %>
+          </div>
+          <div>
+            <%= render 'likes/like_button', micropost: favorite %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </div>
+</div>
